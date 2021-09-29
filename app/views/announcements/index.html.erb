@@ -1,0 +1,28 @@
+<center>
+<h1>Announcements</h1>
+<% if @is_admin %>
+  <h3>New Announcement</h3>
+  <% if @error %>
+    <p><b><%= @error %></b></p>
+  <% end %>
+
+  <%= form_for(@announcement) do |f| %>
+  <%= render(:partial => 'form', :locals => {:f => f}) %>
+  <%= f.submit('Post') %>
+  <% end %>
+  <br>
+<% end %>
+
+<% @announcements.each do |announcement| %>
+  <b><%= announcement.title %></b>
+  <br>
+  <%= announcement.message %>
+  <br>
+  <% if @is_admin %>
+    <%= link_to('edit', edit_announcement_path(announcement), :class => 'action edit') %>
+    <%= link_to('delete', delete_announcement_path(announcement), :class => 'action delete') %>
+    <br>
+  <% end %>
+  <br>
+<% end %>
+</center>
