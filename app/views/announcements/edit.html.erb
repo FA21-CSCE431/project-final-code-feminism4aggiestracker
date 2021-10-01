@@ -1,14 +1,6 @@
-<%= link_to('<< back home', announcements_path, :class => 'back-link', class: 'button1') %>
+<h1>Editing Announcement</h1>
 
-<center>
-<h1>Edit Announcement</h1>
-<% if @error %>
-<p><b>There was an error updating the announcement. Please try again.</b></p>
-<% end %>
+<%= render 'form', announcement: @announcement %>
 
-<%= form_for(@announcement) do |f| %>
-<%= render(:partial => 'form', :locals => {:f => f}) %>
-
-<%= f.submit('Save') %>
-<% end %>
-</center>
+<%= link_to 'Show', @announcement %> |
+<%= link_to 'Back', announcements_path %>
