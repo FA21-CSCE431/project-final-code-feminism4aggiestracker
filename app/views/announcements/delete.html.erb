@@ -1,0 +1,17 @@
+<%= link_to('<< back home', announcements_path, :class => 'back-link', class: 'button1') %>
+<center>
+
+<h1>Delete Announcement</h1>
+
+<%= form_for(@announcement, :method => 'delete') do |f| %>
+<p>Are you sure you want to delete the following announcement?</p>
+<br>
+<b><%= @announcement.title %></b>
+<br>
+<%= @announcement.message %>
+<br>
+<br>
+
+<%= f.submit('Confirm Delete') %>
+<% end %>
+</center>
