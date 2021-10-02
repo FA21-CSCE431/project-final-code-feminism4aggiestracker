@@ -63,11 +63,11 @@ class MembersController < ApplicationController
     end
   
     private def member_params
-      params.require(:member).permit(:title, :message)
+      params.require(:member).permit(:name)
     end
   
     def verify(member)
-      if member.title.empty? or member.message.empty?
+      if member.name.empty?
         return false
       else
         return true
