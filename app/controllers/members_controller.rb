@@ -5,9 +5,9 @@ class MembersController < ApplicationController
       @is_admin = true # just for testing
 
       if @is_admin
-        @announcement = Announcement.new
+        @member = Member.new
       end
-      
+
     end
   
     def new
