@@ -10,10 +10,14 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
+    <%= form.label :'Member Privliges' %>
+    <%= form.select :isAdmin, ['Normal Member', 'Admin']%>
+    <%= form.label :'Owner Privlige' %>
+    <%= form.select :isOwner, ['Non-owner', 'Owner'] %>
   </div>
 
   <div class="actions">
