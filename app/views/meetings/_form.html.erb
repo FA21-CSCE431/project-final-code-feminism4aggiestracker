@@ -1,7 +1,7 @@
-<%= form_with(model: meeting) do |form| %>
+<%= form_with(model: meeting) do |meeting_form| %>
   <% if meeting.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being joined:</h2>
 
       <ul>
         <% meeting.errors.each do |error| %>
@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.check_box :status %>
+    <%= meeting_form.label :status %>
+    <%= meeting_form.check_box :status %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= meeting_form.submit %>
   </div>
 <% end %>

@@ -5,5 +5,17 @@
   <%= @meeting.status %>
 </p>
 
+<h2>Join a meeting:</h2>
+<%= form_for([@meeting, @meeting.joins.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>

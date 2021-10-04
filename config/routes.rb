@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :meetings
+  resources :meetings do
+    resources :joins
+  end
+
   get 'member/ManageMembers'
   root 'announcements#index' # temporarily set the announcements page as home, for convenience
 
@@ -10,6 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :members
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
