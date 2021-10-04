@@ -15,6 +15,14 @@
     <%= meeting_form.label :status %>
     <%= meeting_form.check_box :status %>
   </div>
+  <div class="field">
+    <%= meeting_form.label :name %>
+    <%= meeting_form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= meeting_form.label :date %>
+    <%= meeting_form.date_select :date %>
+  </div>
 
   <div class="actions">
     <%= meeting_form.submit %>
