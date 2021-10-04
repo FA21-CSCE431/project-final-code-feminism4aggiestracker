@@ -3,23 +3,24 @@ require 'rails_helper'
 
 #unit tests using ytvideo Testing with RSpec
 # https://www.youtube.com/watch?v=71eKcNxwxVY
-RSpec.describe Book, type: :model do
+RSpec.describe Member, type: :model do
 	context 'validation tests' do
-		it 'check title' do
-			book = Book.new(author: 'Isaac Asimov', price: '12.99', published_date: '2020/08/15').save
-			expect(book).to eq(false)
+		it 'check name' do
+			member = Member.new(isAdmin: false, isOwner: false, totalPoints: '110').save
+			expect(member).to eq(false)
 		end
-		it 'check author' do
-			book = Book.new(title: 'Foundation', price: '12.99', published_date: '2020/08/15').save
-			expect(book).to eq(false)
+		it 'check admin' do
+			member = Member.new(name: 'Jack', isOwner: false, totalPoints: '110').save
+			expect(member).to eq(true)
 		end
-		it 'check price' do
-			book = Book.new(title: 'Foundation', author: 'Isaac Asimov', published_date: '2020/08/15').save
-			expect(book).to eq(false)
+		it 'check owner' do
+			member = Member.new(name: 'Jack', isAdmin: false, totalPoints: '110').save
+			expect(member).to eq(true)
 		end
-		it 'check date' do
-			book = Book.new(title: 'Foundation', author: 'Isaac Asimov', price: '12.99').save
-			expect(book).to eq(false)
+		it 'check points' do
+			#member = Member.new(name: 'Jack', isAdmin: false, isOwner: false, totalPoints: '110').save
+			member = Member.new(name: 'Jack', isAdmin: false, isOwner: false).save
+			expect(member).to eq(true)
 		end
 	end
 end

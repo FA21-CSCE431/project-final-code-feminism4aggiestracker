@@ -14,15 +14,22 @@
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
+  </div>
     <%#= form.label :'Member Privliges' %>
     <%#= form.select :isAdmin, ['Normal Member', 'Admin']%>
+  <div class="field">
     <%= form.label :'Is Admin?' %>
-    <%= form.select :isAdmin, ['false', 'true']%>
+    <%= form.select :isAdmin, [false, true]%>
     <%#= form.label :'Owner Privlige' %>
     <%#= form.select :isOwner, ['Non-owner', 'Owner'] %>
-    <%= form.label :'Is Owner?' %>
-    <%= form.select :isOwner, ['false', 'true']%>
   </div>
+  <div class="field">
+    <%= form.label :'Is Owner?' %>
+    <%= form.select :isOwner, [false, true]%>
+  </div>
+  <div class="field">
+    <%= form.label :'Member Points' %>
+    <%= form.number_field(:totalPoints) %>
 
   <div class="actions">
     <%= form.submit %>
