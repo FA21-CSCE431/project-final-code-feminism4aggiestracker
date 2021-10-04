@@ -8,12 +8,13 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
+  
   end
 
   # GET /meetings/new
   def new
     @meeting = Meeting.new
-    @meeting.joins.build
+
   end
 
   # GET /meetings/1/edit
@@ -66,6 +67,6 @@ class MeetingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meeting_params
-      params.require(:meeting).permit(:meeting, :status, joins_attributes: [:joins, :name])
+      params.require(:meeting).permit(:status)
     end
 end
