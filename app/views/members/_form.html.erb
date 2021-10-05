@@ -1,0 +1,38 @@
+<%= form_with(model: member) do |form| %>
+  <% if member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+        <% member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+    <%#= form.label :'Member Privliges' %>
+    <%#= form.select :isAdmin, ['Normal Member', 'Admin']%>
+  <div class="field">
+    <%= form.label :'Is Admin?' %>
+    <%= form.select :isAdmin, [false, true]%>
+    <%#= form.label :'Owner Privlige' %>
+    <%#= form.select :isOwner, ['Non-owner', 'Owner'] %>
+  </div>
+  <div class="field">
+    <%= form.label :'Is Owner?' %>
+    <%= form.select :isOwner, [false, true]%>
+  </div>
+  <div class="field">
+    <%= form.label :'Member Points' %>
+    <%= form.number_field(:totalPoints) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

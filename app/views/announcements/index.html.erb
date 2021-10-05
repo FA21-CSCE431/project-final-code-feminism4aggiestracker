@@ -1,7 +1,12 @@
 <center>
 <h1>Announcements</h1>
+<%= link_to("Check out our website here", 'https://feminism4aggies.wixsite.com/tamu')%>
+<br>
 <% if @is_admin %>
+  <%= link_to("Manage Members", {:controller => 'members', :action=>'index'})%>
+  <%= link_to("Manage Meetings", {:controller => 'meetings', :action=>'index'})%>
   <h3>New Announcement</h3>
+
   <% if @error %>
     <p><b><%= @error %></b></p>
   <% end %>
@@ -24,5 +29,6 @@
     <br>
   <% end %>
   <br>
+
 <% end %>
 </center>
