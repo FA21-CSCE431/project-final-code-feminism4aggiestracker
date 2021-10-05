@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :joins
   end
 
+  resources :joins
+
   get 'member/ManageMembers'
   root 'announcements#index' # temporarily set the announcements page as home, for convenience
 

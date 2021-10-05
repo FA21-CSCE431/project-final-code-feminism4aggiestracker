@@ -15,3 +15,5 @@
 
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>
+
+<%= link_to("Join Meeting", new_join_path(:meeting_id => @meeting.id, :member_id => 1))%>
