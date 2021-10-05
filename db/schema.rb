@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_182457) do
+ActiveRecord::Schema.define(version: 2021_10_04_231929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 2021_10_02_182457) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "joins", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "meeting_id", null: false
+    t.bigint "member_id", null: false
+    t.index ["meeting_id"], name: "index_joins_on_meeting_id"
+    t.index ["member_id"], name: "index_joins_on_member_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.boolean "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.date "date"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -31,4 +48,6 @@ ActiveRecord::Schema.define(version: 2021_10_02_182457) do
     t.integer "totalPoints", default: 0
   end
 
+  add_foreign_key "joins", "meetings"
+  add_foreign_key "joins", "members"
 end

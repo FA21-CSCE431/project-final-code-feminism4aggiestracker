@@ -4,6 +4,7 @@
 <br>
 <% if @is_admin %>
   <%= link_to("Manage Members", {:controller => 'members', :action=>'index'})%>
+  <%= link_to("Manage Meetings", {:controller => 'meetings', :action=>'index'})%>
   <h3>New Announcement</h3>
 
   <% if @error %>
