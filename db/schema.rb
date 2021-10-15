@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_231929) do
+ActiveRecord::Schema.define(version: 2021_10_15_150839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 2021_10_04_231929) do
     t.integer "totalPoints", default: 0
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "member_id", null: false
+    t.index ["member_id"], name: "index_posts_on_member_id"
+  end
+
   add_foreign_key "joins", "meetings"
   add_foreign_key "joins", "members"
+  add_foreign_key "posts", "members"
 end

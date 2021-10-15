@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   resources :logins
   #root to: 'dashboards#show'
   #will automatically redirect users to the sign in page upon entering the website
