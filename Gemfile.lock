@@ -204,12 +204,10 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
-<<<<<<< HEAD
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     ruby2_keywords (0.0.5)
-=======
     rexml (3.2.5)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
@@ -228,7 +226,6 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
->>>>>>> 382ebd767a2815a9fabf3750eef9fb251db61449
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
