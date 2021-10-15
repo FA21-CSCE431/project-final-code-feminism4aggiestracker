@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   resources :joins
 
   get 'member/ManageMembers'
-  root 'announcements#index' # temporarily set the announcements page as home, for convenience
-
+  
   resources :announcements do
     member do
       get :delete
