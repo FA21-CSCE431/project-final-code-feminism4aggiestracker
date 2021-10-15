@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2021_10_04_231929) do
 
   # These are extensions that must be enabled in order to support this database
@@ -33,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_10_04_231929) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-
   create_table "joins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -41,6 +39,11 @@ ActiveRecord::Schema.define(version: 2021_10_04_231929) do
     t.bigint "member_id", null: false
     t.index ["meeting_id"], name: "index_joins_on_meeting_id"
     t.index ["member_id"], name: "index_joins_on_member_id"
+  end
+
+  create_table "logins", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "meetings", force: :cascade do |t|
