@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   resources :logins
   #root to: 'dashboards#show'
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   resources :joins
 
   get 'member/ManageMembers'
-  
+
   resources :announcements do
     member do
       get :delete
