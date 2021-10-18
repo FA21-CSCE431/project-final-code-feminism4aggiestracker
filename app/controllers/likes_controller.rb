@@ -31,6 +31,8 @@ class LikesController < ApplicationController
       format.html { redirect_to @post, notice: "You have already liked this post." }
 
     else
+      @post_likes = Post.select("likes")
+      @post_likes += 1
       respond_to do |format|
         if @like.save
           format.html { redirect_to @post, notice: "You have liked this post." }
