@@ -12,6 +12,8 @@ class LikesController < ApplicationController
 
   # GET /likes/new
   def new
+    @post_id = params[:post_id]
+    @member_id = params[:member_id]
     @like = Like.new
   end
 
@@ -22,16 +24,23 @@ class LikesController < ApplicationController
   # POST /likes or /likes.json
   def create
     @like = Like.new(like_params)
+    @post = Post.find(@post_id)
 
-    respond_to do |format|
-      if @like.save
-        format.html { redirect_to @like, notice: "Like was successfully created." }
-        format.json { render :show, status: :created, location: @like }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
+    if (Like.find_by(post_id: @post_id, member_id:@member_id)
+
+      format.html { redirect_to @post, notice: "You have already liked this post." }
+
+    else
+      respond_to do |format|
+        if @like.save
+          format.html { redirect_to @post, notice: "You have liked this post." }
+          format.json { render :show, status: :created, location: @like }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @like.errors, status: :unprocessable_entity }
+        end
       end
-    end
+      
   end
 
   # PATCH/PUT /likes/1 or /likes/1.json
@@ -64,6 +73,6 @@ class LikesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def like_params
-      params.fetch(:like, {})
+      params.fetch(:like, {:meeting_id, :member_id})
     end
 end
