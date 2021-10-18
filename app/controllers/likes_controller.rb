@@ -1,6 +1,12 @@
 class LikesController < ApplicationController
   before_action :set_like, only: %i[ show edit update destroy ]
 
+  if Like.find_by(post_id: @post_id, member_id:@member_id)
+    @liked_post = true
+  else
+    @liked_post = false
+  end
+
   # GET /likes or /likes.json
   def index
     @likes = Like.all
@@ -25,13 +31,8 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     @post = Post.find(@post_id)
-
-    if (Like.find_by(post_id: @post_id, member_id:@member_id)
-
-      format.html { redirect_to @post, notice: "You have already liked this post." }
-
-    else
-      @post_likes = Post.select("likes")
+    
+    @post_likes = Post.select("likes")
       @post_likes += 1
       respond_to do |format|
         if @like.save
@@ -75,6 +76,7 @@ class LikesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def like_params
-      params.fetch(:like, {:meeting_id, :member_id})
+      # params.fetch(:like, {:meeting_id, :member_id})
+      params.require(:like).permit(:meeting_id, :member_id)
     end
 end
