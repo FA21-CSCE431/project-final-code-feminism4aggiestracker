@@ -8,11 +8,13 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+
   end
 
   # GET /posts/1/edit
@@ -22,6 +24,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.save
 
     respond_to do |format|
       if @post.save
@@ -64,6 +67,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.fetch(:post, {})
+      params.require(:post).permit(:title, :body)
     end
 end

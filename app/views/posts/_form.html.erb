@@ -1,4 +1,4 @@
-<%= form_with(model: post) do |form| %>
+<%= form_with(model: post) do |post_form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -11,7 +11,19 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= post_form.label :title %>
+    <%= post_form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= post_form.label :body %>
+    <%= post_form.text_field :body %>
+  </div>
+
+  <% @member = Member.find(@member_id.to_i) %>
+  <%= post_form.hidden_field :member_id, :value => @member.id %>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= post_form.submit %>
   </div>
 <% end %>
