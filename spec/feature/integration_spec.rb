@@ -55,3 +55,15 @@ RSpec.describe 'test points', type: :feature do
 		expect(page).to have_content('110')
 	end
 end
+
+RSpec.describe 'test likes', type: :feature do
+	scenario 'valid inputs'do
+		visit new_like_path
+		fill_in 'member_id', with: '1'
+		fill_in 'post_id', with: '1'
+		click_on 'Create Like'
+		visit likes_path
+		expect(page).to have_content('1')
+	end
+end
+
