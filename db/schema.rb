@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_182238) do
+ActiveRecord::Schema.define(version: 2021_10_04_231929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,15 +41,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_182238) do
     t.index ["member_id"], name: "index_joins_on_member_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "member_id", null: false
-    t.bigint "post_id", null: false
-    t.index ["member_id"], name: "index_likes_on_member_id"
-    t.index ["post_id"], name: "index_likes_on_post_id"
-  end
-
   create_table "logins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -72,19 +63,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_182238) do
     t.integer "totalPoints", default: 0
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.string "body"
-    t.date "date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "member_id", null: false
-    t.index ["member_id"], name: "index_posts_on_member_id"
-  end
-
   add_foreign_key "joins", "meetings"
   add_foreign_key "joins", "members"
-  add_foreign_key "likes", "members"
-  add_foreign_key "likes", "posts"
-  add_foreign_key "posts", "members"
 end
