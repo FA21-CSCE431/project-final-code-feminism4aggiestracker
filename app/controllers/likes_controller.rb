@@ -76,7 +76,7 @@ class LikesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def like_params
-      # params.fetch(:like, {:meeting_id, :member_id})
-      params.require(:like).permit(:meeting_id, :member_id)
+      # params.fetch(:like, {:post_id, :member_id})
+      params.require(:like).permit(:post_id, :member_id)
     end
 end
