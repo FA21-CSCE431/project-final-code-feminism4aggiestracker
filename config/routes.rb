@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   
   resources :posts
 
-  resources :likes
+  resources :likes do
+    member do
+      get :delete
+    end
+  end
 
   resources :logins
   #root to: 'dashboards#show'
