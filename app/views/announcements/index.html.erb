@@ -2,7 +2,7 @@
 <h1>Announcements</h1>
 <%= link_to("Check out our website here", 'https://feminism4aggies.wixsite.com/tamu')%>
 <br>
-<%= link_to("View Events", {:controller => 'meetings', :action=>'index'})%>
+<%= link_to("View Events", {:controller => 'events', :action=>'index'})%>
 <%= link_to("View Posts", {:controller => 'posts', :action=>'index'})%>
 <% if @is_admin %>
   <%= link_to("Manage Members", {:controller => 'members', :action=>'index'})%>
