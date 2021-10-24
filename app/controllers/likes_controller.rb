@@ -1,12 +1,6 @@
 class LikesController < ApplicationController
   before_action :set_like, only: %i[ show edit update destroy ]
 
-  if Like.find_by(post_id: @post_id, member_id:@member_id)
-    @liked_post = true
-  else
-    @liked_post = false
-  end
-
   # GET /likes or /likes.json
   def index
     @likes = Like.all
@@ -30,19 +24,20 @@ class LikesController < ApplicationController
   # POST /likes or /likes.json
   def create
     @like = Like.new(like_params)
-    @post = Post.find(@post_id)
+    @post_id = params[:post_id]
+    @post = Post.find(params[:post_id])
     
-    @post_likes = Post.select("likes")
-      @post_likes += 1
-      respond_to do |format|
-        if @like.save
-          format.html { redirect_to @post, notice: "You have liked this post." }
-          format.json { render :show, status: :created, location: @like }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @like.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @like.save
+        @post_likes = Like.where(post_id: @post_id).pluck('DISTINCT member_id').count
+        Post.update(@post_id, :likes => @post_likes)
+        format.html { redirect_to @post, notice: "You have liked this post." }
+        format.json { render :show, status: :created, location: @like }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @like.errors, status: :unprocessable_entity }
       end
+    end
       
   end
 
@@ -60,10 +55,15 @@ class LikesController < ApplicationController
   end
 
   # DELETE /likes/1 or /likes/1.json
-  def destroy
+  def delete
+    @like = Like.find(params[:id])
+    @post = Post.find(params[:post_id])
+    @post_id = params[:post_id]
     @like.destroy
+    @post_likes = Like.where(post_id: @post_id).pluck('DISTINCT member_id').count
+    Post.update(@post_id, :likes => @post_likes)
     respond_to do |format|
-      format.html { redirect_to likes_url, notice: "Like was successfully destroyed." }
+      format.html { redirect_to @post, notice: "You have un-liked this post." }
       format.json { head :no_content }
     end
   end
@@ -76,7 +76,7 @@ class LikesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def like_params
-      # params.fetch(:like, {:post_id, :member_id})
-      params.require(:like).permit(:post_id, :member_id)
+      # params.fetch(:like, {:meeting_id, :member_id})
+      params.permit(:post_id, :member_id)
     end
 end
