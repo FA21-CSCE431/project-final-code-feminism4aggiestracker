@@ -1,10 +1,18 @@
-<table summary='book form fields'>
+<p>Title:</p>
+<%= f.text_field(:title) %>
+
+<p>Message:</p>
+<%= f.text_area(:message) %>
+
+<!-- is there a reason why these are inside a table?
+<table summary='form fields'>
   <tr>
-    <th>title</th>
+    <th>Title: </th>
     <td><%= f.text_field(:title) %></td>
   </tr>
   <tr>
-    <th>message</th>
+    <th>Message: </th>
     <td><%= f.text_area(:message) %></td>
   </tr>
 </table>
+-->
