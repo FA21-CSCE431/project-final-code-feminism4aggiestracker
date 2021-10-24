@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class='wrapper'>
+  <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
+  <div class='container'>
 
-<p>
-  <strong>Status:</strong>
-  <%= @meeting.status %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= @meeting.name %>
-</p>
-<p>
-  <strong>Date:</strong>
-  <%= @meeting.date %>
-</p>
+    <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<%= link_to 'Back', meetings_path %>
+    <p>
+      <strong>Status:</strong>
+      <%= @meeting.status %>
+    </p>
+    <p>
+      <strong>Name:</strong>
+      <%= @meeting.name %>
+    </p>
+    <p>
+      <strong>Date:</strong>
+      <%= @meeting.date %>
+    </p>
 
-<%= link_to("Join Meeting", new_join_path(:meeting_id => @meeting.id, :member_id => 1))%>
+    <%= link_to 'Edit', edit_meeting_path(@meeting), :class => 'underline' %> |
+    <%= link_to 'Back', meetings_path, :class => 'underline' %>
+
+    <%= link_to("Join Meeting", new_join_path(:meeting_id => @meeting.id, :member_id => 1), :class => 'underline')%>
+
+  </div>
+</div>
