@@ -28,6 +28,7 @@
         <br>
         <p><%= announcement.message %></p>
         <% if @is_admin %>
+          <br>
           <%= link_to('edit', edit_announcement_path(announcement), :class => 'action edit', :class => 'underline') %>
           <%= link_to('delete', delete_announcement_path(announcement), :class => 'action delete', :class => 'underline') %>
         <% end %>
