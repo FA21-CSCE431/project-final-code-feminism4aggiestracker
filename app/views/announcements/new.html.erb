@@ -1,5 +1,11 @@
-<%= link_to('<< back home', announcements_path, :class => 'back-link', class: 'button1') %>
-<center>
+<div class='wrapper'>
+  <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
+  <div class='container'>
+    <%= link_to('<< back home', announcements_path, :class => 'back-link', class: 'button1') %>
+    <center>
 
 
-</center>
+    </center>
+
+    </div>
+</div>

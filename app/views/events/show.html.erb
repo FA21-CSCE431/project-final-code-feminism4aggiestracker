@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class='wrapper'>
+  <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
+  <div class='container'>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @event.name %>
+    </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
+    <p>
+      <strong>Date:</strong>
+      <%= @event.date %>
+    </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @event.status %>
-</p>
+    <p>
+      <strong>Status:</strong>
+      <%= @event.status %>
+    </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+    <%= link_to 'Edit', edit_event_path(@event) %> |
+    <%= link_to 'Back', events_path %>
+
+  </div>
+</div>
