@@ -6,8 +6,10 @@
     <br>
     <% if @is_admin %>
       <%= link_to("Manage Members", {:controller => 'members', :action=>'index'}, :class => 'underline')%>
-      <%= link_to("Manage Meetings", {:controller => 'meetings', :action=>'index'}, :class => 'underline')%>
+      <%= link_to("View Events", {:controller => 'events', :action=>'index'})%>
+      <%= link_to("View Posts", {:controller => 'posts', :action=>'index'})%>
 
+  
       <br><br>
       <b><h3>New Announcement</h3></b>
       <% if @error %>
