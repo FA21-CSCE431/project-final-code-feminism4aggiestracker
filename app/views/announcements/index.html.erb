@@ -1,35 +1,42 @@
-<center>
-<h1>Announcements</h1>
-<%= link_to("Check out our website here", 'https://feminism4aggies.wixsite.com/tamu')%>
-<br>
-<%= link_to("View Events", {:controller => 'events', :action=>'index'})%>
-<%= link_to("View Posts", {:controller => 'posts', :action=>'index'})%>
-<% if @is_admin %>
-  <%= link_to("Manage Members", {:controller => 'members', :action=>'index'})%>
-  <h3>New Announcement</h3>
+<div class='wrapper'>
+  <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
+  <div class='container'>
 
-  <% if @error %>
-    <p><b><%= @error %></b></p>
-  <% end %>
-
-  <%= form_for(@announcement) do |f| %>
-  <%= render(:partial => 'form', :locals => {:f => f}) %>
-  <%= f.submit('Post') %>
-  <% end %>
-  <br>
-<% end %>
-
-<% @announcements.each do |announcement| %>
-  <b><%= announcement.title %></b>
-  <br>
-  <%= announcement.message %>
-  <br>
-  <% if @is_admin %>
-    <%= link_to('edit', edit_announcement_path(announcement), :class => 'action edit') %>
-    <%= link_to('delete', delete_announcement_path(announcement), :class => 'action delete') %>
+    <h1>Announcements</h1>
     <br>
-  <% end %>
-  <br>
+    <% if @is_admin %>
+      <%= link_to("Manage Members", {:controller => 'members', :action=>'index'}, :class => 'underline')%>
+      <%= link_to("View Events", {:controller => 'events', :action=>'index'})%>
+      <%= link_to("View Posts", {:controller => 'posts', :action=>'index'})%>
 
-<% end %>
-</center>
+  
+      <br><br>
+      <b><h3>New Announcement</h3></b>
+      <% if @error %>
+        <p><b><%= @error %></b></p>
+      <% end %>
+      <center>
+        <%= form_for(@announcement) do |f| %>
+          <%= render(:partial => 'form', :locals => {:f => f}) %>
+          <%= f.submit('Post') %>
+        <% end %>
+      </center>
+      <br>
+    <% end %>
+
+    <% @announcements.each do |announcement| %>
+      <div class='box'>
+        <b><%= announcement.title %></b>
+        <br>
+        <p><%= announcement.message %></p>
+        <% if @is_admin %>
+          <br>
+          <%= link_to('edit', edit_announcement_path(announcement), :class => 'action edit', :class => 'underline') %>
+          <%= link_to('delete', delete_announcement_path(announcement), :class => 'action delete', :class => 'underline') %>
+        <% end %>
+      </div>
+      <br>
+    <% end %>
+
+  </div>
+</div>
