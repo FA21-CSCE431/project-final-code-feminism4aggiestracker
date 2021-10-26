@@ -1,3 +1,4 @@
+
 <%= form_with(model: member) do |form| %>
   <% if member.errors.any? %>
     <div id="error_explanation">
@@ -18,19 +19,22 @@
     <%#= form.label :'Member Privliges' %>
     <%#= form.select :isAdmin, ['Normal Member', 'Admin']%>
   <div class="field">
-    <%= form.label :'Is Admin?' %>
+    <%= form.label :'Give admin priveleges?' %>
+    <br>
     <%= form.select :isAdmin, [false, true]%>
     <%#= form.label :'Owner Privlige' %>
     <%#= form.select :isOwner, ['Non-owner', 'Owner'] %>
   </div>
   <div class="field">
-    <%= form.label :'Is Owner?' %>
+    <%= form.label :'Give owner privileges?' %>
+    <br>
     <%= form.select :isOwner, [false, true]%>
   </div>
   <div class="field">
     <%= form.label :'Member Points' %>
     <%= form.number_field(:totalPoints) %>
   </div>
+  <br>
 
   <div class="actions">
     <%= form.submit %>

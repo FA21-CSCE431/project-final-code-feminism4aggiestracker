@@ -1,6 +1,13 @@
-<h1>Editing Meeting</h1>
+<div class='wrapper'>
+  <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
+  <div class='container'>
 
-<%= render 'form', meeting: @meeting %>
+    <h1>Editing Meeting</h1>
 
-<%= link_to 'Show', @meeting %> |
-<%= link_to 'Back', meetings_path %>
+    <%= render 'form', meeting: @meeting %>
+
+    <%= link_to 'Show', @meeting %> |
+    <%= link_to 'Back', meetings_path %>
+
+  </div>
+</div>
