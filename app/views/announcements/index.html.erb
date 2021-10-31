@@ -8,9 +8,7 @@
       <%= link_to("Manage Members", {:controller => 'members', :action=>'index'}, :class => 'underline')%>
       <%= link_to("View Events", {:controller => 'events', :action=>'index'})%>
       <%= link_to("View Posts", {:controller => 'posts', :action=>'index'})%>
-
-  
-      <br><br>
+      <br>
       <b><h3>New Announcement</h3></b>
       <% if @error %>
         <p><b><%= @error %></b></p>
