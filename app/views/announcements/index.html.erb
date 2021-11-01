@@ -5,9 +5,7 @@
     <h1>Announcements</h1>
     <br>
     <% if @is_admin %>
-      <%= link_to("Manage Members", {:controller => 'members', :action=>'index'}, :class => 'underline')%>
-      <%= link_to("Manage Meetings", {:controller => 'meetings', :action=>'index'}, :class => 'underline')%>
-
+  
       <br><br>
       <b><h3>New Announcement</h3></b>
       <% if @error %>
