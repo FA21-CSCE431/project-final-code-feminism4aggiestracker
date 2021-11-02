@@ -14,8 +14,18 @@
     </p>
 
     <p>
-      <strong>Status:</strong>
-      <%= @event.status %>
+      <strong>Active:</strong>
+        <% if @event.status == true %>
+          <td> Yes </td>
+        <% else %>
+          <td> No </td>
+        <% end %>
+    </p>
+
+    <p>
+      <strong>Activity Type:</strong>
+      <% @activity = Activity.find(@event.activity_id) %>
+      <%= @activity.name %>
     </p>
 
     <%= link_to 'Edit', edit_event_path(@event) %> |
