@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_23_184158) do
+ActiveRecord::Schema.define(version: 2021_11_02_161422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2021_10_23_184158) do
     t.boolean "isAdmin", default: false
     t.boolean "isOwner", default: false
     t.integer "totalPoints", default: 0
+    t.string "email"
+    t.string "uid"
   end
 
   create_table "posts", force: :cascade do |t|

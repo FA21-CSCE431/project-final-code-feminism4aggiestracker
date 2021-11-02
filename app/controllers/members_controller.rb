@@ -1,8 +1,14 @@
 class MembersController < ApplicationController
     def index
       @members = Member.order('created_at DESC')
+      
+      @current_member = Member.where(uid: current_admin.uid).first()
 
-      @is_admin = true # just for testing
+      if @current_member.isAdmin == true
+        @is_admin = true
+      else
+        @is_admin = false
+      end
 
       if @is_admin
         @member = Member.new
@@ -63,7 +69,7 @@ class MembersController < ApplicationController
     end
 
     private def member_params
-      params.require(:member).permit(:name, :totalPoints, :isAdmin, :isOwner)
+      params.require(:member).permit(:name, :totalPoints, :isAdmin, :isOwner, :uid, :email)
     end
 
     def verify(member)

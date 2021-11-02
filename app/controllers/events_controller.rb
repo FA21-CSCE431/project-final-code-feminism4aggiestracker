@@ -3,9 +3,17 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
+
+    @current_member = Member.where(uid: current_admin.uid).first()
+
+    if @current_member.isAdmin == true
+      @is_admin = true
+    else
+      @is_admin = false
+    end
+
     @events = Event.all
 
-    @is_admin = true
   end
 
   # GET /events/1 or /events/1.json
