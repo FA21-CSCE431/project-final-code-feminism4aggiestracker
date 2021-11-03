@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-<<<<<<< HEAD
-	# before_action :authenticate_admin!
-=======
 	#before_action :authenticate_admin!
->>>>>>> 7107f6305a3b0e6d24ab97e24b307b7cd43dcb1d
+=======
+	before_action :authenticate_admin!
+>>>>>>> a54009ceb38117fe8703bbaaf62a824aefc79649
 end
