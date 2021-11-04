@@ -2,73 +2,56 @@
   <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
   <div class='container'>
     <p id="notice"><%= notice %></p>
+
     <h1>Posts</h1>
-    <%= link_to 'New Post', new_post_path, :class => 'underline' %>
-    <br><br>
-    <% @posts.each do |post| %>
-      <div class='box'>
-        <b><%= post.title %></b>
-        <p><%= post.body %></p>
-        <!-- <input type="checkbox" id="checkbox"/> -->
-        <%= check_box_tag('checkbox', 'checkbox', {checked: Like.exists?(:member_id => 1, :post_id => post.id)})%>
-        <label for="checkbox">
-          <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
-            <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
-              <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
-              <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
+    <%= link_to("To Home Page", {:controller => 'announcements', :action=>'index'})%>
 
-              <g id="grp7" opacity="0" transform="translate(7 6)">
-                <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
-                <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
-              </g>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Author</th>
+          <th>Likes</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-              <g id="grp6" opacity="0" transform="translate(0 28)">
-                <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
-                <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
-              </g>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td><%= post.body %></td>
+            <% @user = Member.find(post.member_id) %>
+            <td><%= @user.name %></td>
+            <td><%= post.likes %></td>
 
-              <g id="grp3" opacity="0" transform="translate(52 28)">
-                <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
-                <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
-              </g>
+            <td><%= link_to 'Show', post %></td>
 
-              <g id="grp2" opacity="0" transform="translate(44 6)">
-                <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
-                <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
-              </g>
+            <% @member_id = Member.where(uid: current_admin.uid).first().id %>
 
-              <g id="grp5" opacity="0" transform="translate(14 50)">
-                <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
-                <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
-              </g>
+            <% if(Like.exists?(:member_id => @member_id, :post_id => post.id)) %>
+              <% @like = Like.find_by(member_id: @member_id, post_id: post.id) %>
+              <td><%= link_to("Un-like This Post", delete_like_path(@like, :post_id => post.id, :member_id => @member_id), data: { confirm: 'Are you sure?' }) %></td>
+            <% else %>
+              <td><%= link_to("Like This Post", likes_path(:like => @like, :post_id => post.id, :member_id => @member_id), method: :create) %>
+            <% end %></td>
 
-              <g id="grp4" opacity="0" transform="translate(35 50)">
-                <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
-                <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
-              </g>
+            <% if @member_id == post.member_id %>
+              <td><%= link_to 'Edit Post', edit_post_path(post) %></td>
+            <% end %>
 
-              <g id="grp1" opacity="0" transform="translate(24)">
-                <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
-                <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
-              </g>
-            </g>
-          </svg>
-        </label>
-        <p style="display:inline"><%= post.likes %></p><br>
-        <% if(Like.exists?(:member_id => 1, :post_id => post.id)) %>
-          <% @like = Like.find_by(member_id: 1, post_id: post.id) %>
-          <%= link_to('Un-like', delete_like_path(@like, :post_id => post.id, :member_id => 1), data: { confirm: 'Are you sure?' }, :class => 'underline') %>
-        <% else %>
-          <%= link_to('Like', likes_path(:like => @like, :post_id => post.id, :member_id => 1), method: :create, :class => 'underline') %>
+            <% if @is_admin || @member_id == post.member_id %>
+              <td><%= link_to 'Delete Post', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+
+          </tr>
         <% end %>
-        <% if true %>
-          <!--- <%= link_to 'Show', post, :class => 'underline' %> -->
-          <%= link_to 'Edit', edit_post_path(post), :class => 'underline' %>
-          <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %>
-        <% end %>
-      </div>
-    <% end %>
+      </tbody>
+    </table>
 
     <br>
+
+    <%= link_to 'New Post', new_post_path %>
   </div>
 </div>

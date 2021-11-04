@@ -1,8 +1,12 @@
 class MembersController < ApplicationController
     def index
+
       @members = Member.order('created_at DESC')
-      
+
       @current_member = Member.where(uid: current_admin.uid).first()
+
+      @posts = Post.all
+      @bios = Bio.all
 
       if @current_member.isAdmin == true
         @is_admin = true
@@ -40,6 +44,8 @@ class MembersController < ApplicationController
 
     def show
       @member = Member.find(params[:id])
+      @posts = Post.all
+      @bios = Bio.all
     end
 
     def edit
