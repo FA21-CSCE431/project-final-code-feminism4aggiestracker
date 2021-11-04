@@ -22,10 +22,17 @@ class MemberPointsController < ApplicationController
   # POST /member_points or /member_points.json
   def create
     @member_point = MemberPoint.new(member_point_params)
+    @member_id = params[:member_id]
+    @member = Member.find(@member_id)
+    @event_id = params[:event_id]
+    @event = Event.find(@event_id)
+    @activity = Activity.find(@event.activity_id)
+    @new_points = @member.totalPoints + @activity.num_points
 
     respond_to do |format|
       if @member_point.save
-        format.html { redirect_to @member_point, notice: "Member point was successfully created." }
+        Member.update(@member_id, :totalPoints => @new_points)
+        format.html { redirect_to @event, notice: "You have checked into this event." }
         format.json { render :show, status: :created, location: @member_point }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +45,7 @@ class MemberPointsController < ApplicationController
   def update
     respond_to do |format|
       if @member_point.update(member_point_params)
-        format.html { redirect_to @member_point, notice: "Member point was successfully updated." }
+        format.html { redirect_to @event, notice: "Member point was successfully updated." }
         format.json { render :show, status: :ok, location: @member_point }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,6 +71,6 @@ class MemberPointsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def member_point_params
-      params.require(:member_point).permit(:date, :points)
+      params.permit(:date, :points, :event_id, :member_id, :activity_id)
     end
 end
