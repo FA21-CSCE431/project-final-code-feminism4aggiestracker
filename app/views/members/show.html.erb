@@ -16,7 +16,15 @@
     <p>
       <strong>Bio:</strong>
       <% @member_id = Member.where(uid: current_admin.uid).first().id %>
-      <% @bio = Bio.where(member_id: @member_id) %>
+      <% @bio = Bio.where(member_id: @member.id) %>
+      <%if @bio.empty? && @member_id == @member.id%>
+        <%= link_to 'Add a bio', new_bio_path(@bio), :class => 'underline' %>
+      <%else%>
+        <%= @bio.first().body %>
+        <%if @member_id == @member.id%>
+          <%= link_to 'Edit', edit_bio_path(@bio.first()) %>
+        <%end%>
+      <%end%>
     </p>
 
     <p>
