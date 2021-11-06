@@ -1,11 +1,15 @@
 <div class='wrapper'>
   <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
   <div class='container'>
+    <% if @current_member.isAdmin or @current_member.isOwner or (@member.uid == @current_member.uid) %>
         <h1>Editing Member</h1>
 
-        <%= render 'form', member: @member %>
+        <%= render 'form', member: @member, current_member: @current_member %>
 
         <%= link_to 'Show', @member %> |
         <%= link_to 'Back', members_path %>
-    </div>
+    <% else %>
+        <h1>Access Denied</h1>
+    <% end %>
+  </div>
 </div>

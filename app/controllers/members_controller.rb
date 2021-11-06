@@ -37,6 +37,7 @@ class MembersController < ApplicationController
     end
 
     def edit
+      @current_member = Member.where(uid: current_admin.uid).first()
       @member = Member.find(params[:id])
     end
 

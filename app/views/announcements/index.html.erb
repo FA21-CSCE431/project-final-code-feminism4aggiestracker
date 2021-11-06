@@ -4,7 +4,7 @@
 
     <h1>Announcements</h1>
     <br>
-    <% if @is_admin %>
+    <% if @is_admin or @current_member.isOwner %>
       <b><h3>New Announcement</h3></b>
       <% if @error %>
         <p><b><%= @error %></b></p>

@@ -22,7 +22,7 @@
 
   <% @member = Member.find_by(uid: current_admin.uid) %>
   <% if @member != nil %>
-    <% if @member.isOwner or @member.isAdmin %>
+    <% if @current_member.isOwner or @current_member.isAdmin %>
       <div class="field">
         <%= form.label :'Member Points' %>
         <%= form.number_field(:totalPoints) %>
@@ -33,7 +33,7 @@
       <%= form.select :isAdmin, [false, true]%>
       </div>
     <% end %>
-    <% if @member.isOwner %>
+    <% if @current_member.isOwner %>
       <div class="field">
         <%= form.label :'Give owner privileges?' %>
         <br>
