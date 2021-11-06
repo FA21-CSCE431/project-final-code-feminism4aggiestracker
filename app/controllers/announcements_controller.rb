@@ -1,7 +1,13 @@
 class AnnouncementsController < ApplicationController
   def index
+    if Member.exists?(uid: current_admin.uid) == false
+      redirect_to(new_member_path)
+    else
+      @current_member = Member.where(uid: current_admin.uid).first()
+      @is_admin = @current_member.isAdmin
+    end
+
     @announcements = Announcement.order('created_at DESC')
-    @is_admin = true # just for testing
 
     if @is_admin
       @announcement = Announcement.new

@@ -22,15 +22,11 @@
     <%= form.text_field :body %>
   </div>
 
-
-
-  <% @member_id = 1 %>
-  <%= form.hidden_field :member_id, :value => @member_id %>
+  <% @member_id = Member.where(uid: current_admin.uid).first() %>
+  <%= form.hidden_field :member_id, :value => @member_id.id %>
 
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
-
-

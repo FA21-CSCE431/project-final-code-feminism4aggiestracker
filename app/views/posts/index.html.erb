@@ -14,16 +14,19 @@
         <p style="display:inline">Likes: <%= post.likes %></p><br>
         <% if(Like.exists?(:member_id => 1, :post_id => post.id)) %>
           <% @like = Like.find_by(member_id: 1, post_id: post.id) %>
-          <%= link_to('Un-like', delete_like_path(@like, :post_id => post.id, :member_id => 1), data: { confirm: 'Are you sure?' }, :class => 'underline') %>
+          <%= link_to('Un-like', delete_like_path(@like, :post_id => post.id, :member_id => 1),:class => 'underline') %>
         <% else %>
           <%= link_to('Like', likes_path(:like => @like, :post_id => post.id, :member_id => 1), method: :create, :class => 'underline') %>
         <% end %>
-        <% if true %>
+        <% if post.member_id == Member.where(uid: current_admin.uid).first().id %>
           <!--- <%= link_to 'Show', post, :class => 'underline' %> -->
           <%= link_to 'Edit', edit_post_path(post), :class => 'underline' %>
+        <% end %>
+        <% if (post.member_id == Member.where(uid: current_admin.uid).first().id) or @current_member.isAdmin or @current_member.isOwner %>
           <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %>
         <% end %>
       </div>
+      <br>
     <% end %>
 
     <br>
