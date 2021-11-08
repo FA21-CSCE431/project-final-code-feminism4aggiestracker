@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
+
   # GET /posts or /posts.json
   def index
     if Member.exists?(uid: current_admin.uid) == false
@@ -11,8 +12,8 @@ class PostsController < ApplicationController
       @is_admin = @current_member.isAdmin
 
     end
-    
-    @posts = @posts = Post.order('created_at DESC')
+
+    @posts = Post.order('created_at DESC')
 
   end
 
