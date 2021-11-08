@@ -25,6 +25,29 @@ RSpec.describe Member, type: :model do
 	end
 end
 
+RSpec.describe MemberPoint, type: :model do
+	context 'memberpoints tests' do
+		it 'check member id only' do
+			@member = Member.create(name: 'Andrew')
+			memberpoint = MemberPoint.new(member_id: @member.id, activity_id: 0, event_id: 0).save
+			expect(memberpoint).to eq(false)
+		end
+		it 'check event id only' do
+			@activity = Activity.create(name: 'Meeting', num_points: '10')
+			@event = Event.create(name: 'General Meeting', activity_id: @activity.id)
+			memberpoint = MemberPoint.new(event_id: @event.id, activity_id: 0, member_id: 0).save
+			expect(memberpoint).to eq(false)
+		end
+		it 'check valid input' do
+			@activity = Activity.create(name: 'Meeting', num_points: '10')
+			@event = Event.create(name: 'General Meeting', activity_id: @activity.id)
+			@member = Member.create(name: 'Andrew')
+			memberpoint = MemberPoint.new(member_id: @member.id, event_id: @event.id, activity_id: @activity.id).save
+			expect(memberpoint).to eq(true)
+		end
+	end
+end	
+
 RSpec.describe Like, type: :model do
 	context 'likes unit tests' do
 		it 'check post_id only' do

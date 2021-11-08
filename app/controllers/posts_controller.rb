@@ -1,21 +1,17 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
+
   # GET /posts or /posts.json
   def index
     if Member.exists?(uid: current_admin.uid) == false
       redirect_to(new_member_path) 
     else
       @current_member = Member.where(uid: current_admin.uid).first()
-
-      if @current_member.isAdmin == true
-        @is_admin = true
-      else
-        @is_admin = false
-      end
+      @is_admin = @current_member.isAdmin
     end
 
-    @posts = Post.all
+    @posts = Post.order('created_at DESC')
   end
 
   # GET /posts/1 or /posts/1.json
@@ -34,7 +30,6 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    @post.save
 
     respond_to do |format|
       if @post.save

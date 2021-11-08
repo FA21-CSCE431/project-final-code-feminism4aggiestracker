@@ -24,7 +24,7 @@
             <td><%= post.body %></td>
             <% @user = Member.find(post.member_id) %>
             <td><%= @user.name %></td>
-            <td><%= post.likes %></td>
+            <td><%= post.numlikes %></td>
 
             <td><%= link_to 'Show', post %></td>
 
