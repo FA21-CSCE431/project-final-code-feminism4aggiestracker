@@ -1,7 +1,13 @@
 class MembersController < ApplicationController
     def index
-      @members = Member.order('created_at DESC')
-      
+      @members = Member.order(sort_collumn + " " + sort_direction.to_s) 
+      #if params[:sort] != "totalPoints"
+       # @members = Member.order(params[:sort])
+      #elsif params[:sort] == "totalPoints"
+      #  @members = Member.all.sort_by{|member| member.totalPoints}
+      #else
+      #  @members = Member.all
+      #end
       @current_member = Member.where(uid: current_admin.uid).first()
 
       if @current_member.isAdmin == true
@@ -79,4 +85,15 @@ class MembersController < ApplicationController
         return true
       end
     end
+
+    private
+
+    def sort_collumn
+      params[:sort] || "name"
+    end
+
+    def sort_direction
+      params[:direction] || "ASC"
+    end
+
   end
