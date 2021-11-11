@@ -332,3 +332,13 @@ a{
 .box > .underline::before{
   background-color: #c24fd6;
 }
+
+/* ---------- table styles ---------- */
+
+table {
+    table-layout: fixed;
+}
+
+td {
+    word-wrap: break-word
+}

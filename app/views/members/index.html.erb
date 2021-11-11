@@ -21,23 +21,14 @@
             <td><%= member.name %></td>
             <td><%= member.totalPoints %></td>
             <td><%= member.email %></td>
-            <% if member.isAdmin %>
-              <td> Yes </td>
-            <% else %>
-              <td> No </td>
-            <% end %>
-            <% if member.isOwner %>
-              <td> Yes </td>
-            <% else %>
-              <td> No </td>
-            <% end %>
+            <td><%= member.isAdmin ? 'Yes' : 'No' %></td>
+            <td><%= member.isOwner ? 'Yes' : 'No' %></td>
             <td><%= link_to 'View Bio', member, :class => 'underline' %></td>
-            <br>
             <% if @is_admin or @current_member.isOwner or member.uid == @current_member.uid %>
-              <td><%= link_to 'Edit', edit_member_path(member), :class => 'underline' %></td>
+              <td> | <%= link_to 'Edit', edit_member_path(member), :class => 'underline' %></td>
             <% end %>
             <% if @is_admin or @current_member.isOwner or member.uid == @current_member.uid %>
-              <td><%= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %></td>
+              <td> | <%= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %></td>
             <% end %>
           </tr>
         <% end %>
