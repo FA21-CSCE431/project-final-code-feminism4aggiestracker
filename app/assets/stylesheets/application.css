@@ -132,7 +132,7 @@
   box-sizing: border-box;
   padding: initial;
   border: initial;
-  
+
 }
 
  form input:hover, form textarea:hover, form select:hover {
@@ -301,7 +301,7 @@ a{
   }
 }
 
- /* ------------------------- announcement box styles ------------------------- */
+ /* ------------------------- box styles ------------------------- */
 
 .box {
   box-shadow:
@@ -320,7 +320,9 @@ a{
   background: #f6f6f6;
   border-radius: 20px;
   padding-top: 10px;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .box > * {
@@ -330,4 +332,3 @@ a{
 .box > .underline::before{
   background-color: #c24fd6;
 }
-

@@ -1,11 +1,8 @@
 <div class='wrapper'>
   <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
   <div class='container'>
-
     <p id="notice"><%= notice %></p>
-
     <h1>Members</h1>
-
     <table>
       <thead>
         <tr>
@@ -36,16 +33,16 @@
             <% end %>
             <td><%= link_to 'View Bio', member, :class => 'underline' %></td>
             <br>
-            <% if @is_admin or member.uid == @current_member.uid %>
+            <% if @is_admin or @current_member.isOwner or member.uid == @current_member.uid %>
               <td><%= link_to 'Edit', edit_member_path(member), :class => 'underline' %></td>
-              <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %></td>
+            <% end %>
+            <% if @is_admin or @current_member.isOwner or member.uid == @current_member.uid %>
+              <td><%= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %></td>
             <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
-
-    <br>
 
   </div>
 </div>

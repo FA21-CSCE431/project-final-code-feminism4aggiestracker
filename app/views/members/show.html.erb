@@ -1,32 +1,31 @@
 <div class='wrapper'>
   <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
   <div class='container'>
+    <%= link_to 'Back', members_path, :class => 'underline'%>
+    <br>
+    <br>
     <p id="notice"><%= notice %></p>
 
-    <p>
-      <strong>Name:</strong>
-      <%= @member.name %>
-    </p>
+    <div class='box'>
+      <p>
+        <strong>Name:</strong>
+        <%= @member.name %>
+      </p>
 
-    <p>
-      <strong>Points:</strong>
-      <%= @member.totalPoints %>
-    </p>
+      <p>
+        <strong>Points:</strong>
+        <%= @member.totalPoints %>
+      </p>
 
-    <p>
-      <strong>Admin:</strong>
-      <%= @member.isAdmin %>
-    </p>
+      <p>
+        <strong>Admin:</strong>
+        <%= @member.isAdmin ? 'Yes' : 'No' %>
+      </p>
 
-    <p>
-      <strong>Owner:</strong>
-      <%= @member.isOwner %>
-    </p>
-
-
-    <% if @is_admin or member.uid == @current_admin.uid %>
-      <%= link_to 'Edit', edit_member_path(@member) %> |
-    <% end %>
-    <%= link_to 'Back', members_path %>
+      <p>
+        <strong>Owner:</strong>
+        <%= @member.isOwner ? 'Yes' : 'No' %>
+      </p>
+    </div>
   </div>
 </div>
