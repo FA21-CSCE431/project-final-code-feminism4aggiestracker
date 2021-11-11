@@ -1,3 +1,5 @@
 class Post < ApplicationRecord
-  validates :member_id, :presence => true
+
+    has_many :likes, dependent: :destroy
+    
 end

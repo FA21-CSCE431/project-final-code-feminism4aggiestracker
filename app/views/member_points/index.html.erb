@@ -1,0 +1,34 @@
+<div class='wrapper'>
+  <%= render(:partial => 'navbar', :locals => {:is_logged_in => true}) %>
+  <div class='container'>
+
+  <h1>Attendance Points</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Activity Type</th>
+        <th>Date</th>
+        <th>Points</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @member_points.each do |member_point| %>
+        <tr>
+          <% @event = Event.find(member_point.event_id) %>
+          <td><%= @event.name %></td>
+          <% @activity = Activity.find(member_point.activity_id) %>
+          <td><%= @activity.name %></td>
+          <td><%= member_point.date %></td>
+          <td><%= member_point.points %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  </div>
+</div>
+

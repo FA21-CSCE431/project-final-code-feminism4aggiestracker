@@ -6,11 +6,7 @@ class EventsController < ApplicationController
 
     @current_member = Member.where(uid: current_admin.uid).first()
 
-    if @current_member.isAdmin == true
-      @is_admin = true
-    else
-      @is_admin = false
-    end
+    @is_admin = @current_member.isAdmin
 
     @events = Event.all
 
@@ -77,6 +73,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:status, :name, :date)
+      params.require(:event).permit(:status, :name, :date, :activity_id)
     end
 end

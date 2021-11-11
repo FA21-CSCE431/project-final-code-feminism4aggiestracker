@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-
-
-
+  
+  resources :member_points
+  resources :activities
   resources :posts
   resources :bios
-
 
   resources :likes do
     member do
@@ -20,7 +19,7 @@ Rails.application.routes.draw do
   devise_scope :admin do
     get 'admins/sign_in', to: 'admins/sessions#new', as: :new_admin_session
     get 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
-  end
+  end  
   # temporarily set the announcements page as home, for convenience
   # the google oauth tutorial had me set a different root idk how were going to do this
 
