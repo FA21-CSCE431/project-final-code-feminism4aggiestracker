@@ -9,8 +9,6 @@
       <p>
         <strong>Points:</strong>
         <%= @member.totalPoints %>
-        <br>
-        <strong><%= link_to 'View Points History', member_points_path(:member_id => @member.id), {:style=>'color:#c24fd6;'} %></strong>
       </p>
       
       <p>
@@ -18,13 +16,10 @@
         <% @member_id = Member.where(uid: current_admin.uid).first().id %>
         <% @bio = Bio.where(member_id: @member.id) %>
         <% if @bio.empty? && @member_id == @member.id %>
-          <strong><%= link_to 'Add a bio', new_bio_path(@bio), {:style=>'color:#c24fd6;'} %></strong>
+          <%= link_to 'Add a bio', new_bio_path(@bio), {:style=>'color:#c24fd6;', :class => 'underline'} %>
         <% else %>
           <% if @bio.empty? == false %>
             <%= @bio.first().body %>
-          <% end %>
-          <% if @member_id == @member.id %>
-            | <strong><%= link_to 'Edit Bio', edit_bio_path(@bio.first()), {:style=>'color:#c24fd6;'} %></strong>
           <% end %>
         <% end %>
       </p>
@@ -38,6 +33,12 @@
         <strong>Owner:</strong>
         <%= @member.isOwner ? 'Yes' : 'No' %>
       </p>
+
+      <%= link_to 'View Points History', member_points_path(:member_id => @member.id), :class => 'underline' %>
+      <% if @member_id == @member.id %>
+            <%= link_to '| Edit Bio', edit_bio_path(@bio.first()), :class => 'underline'%>
+      <% end %>
+  
     </div>
     <br>
     <br>
