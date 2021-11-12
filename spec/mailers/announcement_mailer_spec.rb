@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe AnnouncementMailer, type: :mailer do
   describe "announcement_created" do
     let(:mail) { AnnouncementMailer.announcement_created }
+    let(:member) {mock_model Member, name: Nate, email: 'from@example.com'}
 
     it "renders the headers" do
       expect(mail.subject).to eq("Announcement created")
