@@ -3,8 +3,7 @@
   <div class='container'>
     <p id="notice"><%= notice %></p>
     <h1>Posts</h1>
-    <%= link_to("To Home Page", {:controller => 'announcements', :action=>'index'})%>
-
+    
     <%= link_to 'New Post', new_post_path, :class => 'underline' %>
     <br><br>
     <% @posts.each do |post| %>
