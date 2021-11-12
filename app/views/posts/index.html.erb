@@ -6,6 +6,7 @@
     <h1>Posts</h1>
     <%= link_to("To Home Page", {:controller => 'announcements', :action=>'index'})%>
 
+<<<<<<< HEAD
     <% @posts.each do |post| %>
       <div class='box'>
         <b><%= post.title %></b>
@@ -21,6 +22,7 @@
           <%= link_to("Un-like This Post", delete_like_path(@like, :post_id => post.id, :member_id => @member_id), data: { confirm: 'Are you sure?' }) %>
         <% else %>
           <%= link_to("Like This Post", likes_path(:like => @like, :post_id => post.id, :member_id => @member_id), method: :create) %>
+
         <% end %>
         
         <% if @member_id == post.member_id %>
