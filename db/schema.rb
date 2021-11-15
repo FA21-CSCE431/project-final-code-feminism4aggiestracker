@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_23_184158) do
+ActiveRecord::Schema.define(version: 2021_11_08_002048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.integer "num_points"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", null: false
@@ -32,12 +39,22 @@ ActiveRecord::Schema.define(version: 2021_10_23_184158) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "bios", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "member_id", null: false
+    t.index ["member_id"], name: "index_bios_on_member_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.date "date"
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "activity_id", null: false
+    t.index ["activity_id"], name: "index_events_on_activity_id"
   end
 
   create_table "joins", force: :cascade do |t|
@@ -71,6 +88,19 @@ ActiveRecord::Schema.define(version: 2021_10_23_184158) do
     t.date "date"
   end
 
+  create_table "member_points", force: :cascade do |t|
+    t.date "date"
+    t.integer "points"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "event_id", null: false
+    t.bigint "activity_id", null: false
+    t.bigint "member_id", null: false
+    t.index ["activity_id"], name: "index_member_points_on_activity_id"
+    t.index ["event_id"], name: "index_member_points_on_event_id"
+    t.index ["member_id"], name: "index_member_points_on_member_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -78,6 +108,8 @@ ActiveRecord::Schema.define(version: 2021_10_23_184158) do
     t.boolean "isAdmin", default: false
     t.boolean "isOwner", default: false
     t.integer "totalPoints", default: 0
+    t.string "email"
+    t.string "uid"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -87,12 +119,18 @@ ActiveRecord::Schema.define(version: 2021_10_23_184158) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "member_id", null: false
     t.integer "likes"
+    t.integer "numlikes", default: 0
     t.index ["member_id"], name: "index_posts_on_member_id"
   end
 
+  add_foreign_key "bios", "members"
+  add_foreign_key "events", "activities"
   add_foreign_key "joins", "meetings"
   add_foreign_key "joins", "members"
   add_foreign_key "likes", "members"
   add_foreign_key "likes", "posts"
+  add_foreign_key "member_points", "activities"
+  add_foreign_key "member_points", "events"
+  add_foreign_key "member_points", "members"
   add_foreign_key "posts", "members"
 end

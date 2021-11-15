@@ -16,24 +16,28 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-    <%#= form.label :'Member Privliges' %>
-    <%#= form.select :isAdmin, ['Normal Member', 'Admin']%>
-  <div class="field">
-    <%= form.label :'Give admin priveleges?' %>
-    <br>
-    <%= form.select :isAdmin, [false, true]%>
-    <%#= form.label :'Owner Privlige' %>
-    <%#= form.select :isOwner, ['Non-owner', 'Owner'] %>
-  </div>
-  <div class="field">
-    <%= form.label :'Give owner privileges?' %>
-    <br>
-    <%= form.select :isOwner, [false, true]%>
-  </div>
-  <div class="field">
-    <%= form.label :'Member Points' %>
-    <%= form.number_field(:totalPoints) %>
-  </div>
+
+  <% @member = Member.find_by(uid: current_admin.uid) %>
+  <% if @member != nil %>
+    <% if @member.isAdmin %>
+      <div class="field">
+        <%= form.label :'Member Points' %>
+        <%= form.number_field(:totalPoints) %>
+      </div>
+    <% end %>
+    <% if @member.isOwner %>
+      <div class="field">
+      <%= form.label :'Give admin privileges?' %>
+      <br>
+      <%= form.select :isAdmin, [false, true]%>
+      </div>
+      <div class="field">
+        <%= form.label :'Give owner privileges?' %>
+        <br>
+        <%= form.select :isOwner, [false, true]%>
+      </div>
+    <% end %>
+  <% end %>
   <br>
 
   <div class="actions">

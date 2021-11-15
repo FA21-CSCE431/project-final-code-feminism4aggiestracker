@@ -1,8 +1,20 @@
 class MembersController < ApplicationController
     def index
-      @members = Member.order('created_at DESC')
+      @members = Member.order(sort_collumn + " " + sort_direction.to_s) 
+      #if params[:sort] != "totalPoints"
+       # @members = Member.order(params[:sort])
+      #elsif params[:sort] == "totalPoints"
+      #  @members = Member.all.sort_by{|member| member.totalPoints}
+      #else
+      #  @members = Member.all
+      #end
+      @current_member = Member.where(uid: current_admin.uid).first()
 
-      @is_admin = true # just for testing
+      @is_admin = @current_member.isAdmin
+      
+      @posts = Post.all
+      @bios = Bio.all
+
 
       if @is_admin
         @member = Member.new
@@ -34,9 +46,12 @@ class MembersController < ApplicationController
 
     def show
       @member = Member.find(params[:id])
+      @posts = Post.all
+      @bios = Bio.all
     end
 
     def edit
+      @current_member = Member.where(uid: current_admin.uid).first()
       @member = Member.find(params[:id])
     end
 
@@ -63,7 +78,7 @@ class MembersController < ApplicationController
     end
 
     private def member_params
-      params.require(:member).permit(:name, :totalPoints, :isAdmin, :isOwner)
+      params.require(:member).permit(:name, :totalPoints, :isAdmin, :isOwner, :uid, :email)
     end
 
     def verify(member)
@@ -73,4 +88,15 @@ class MembersController < ApplicationController
         return true
       end
     end
+
+    private
+
+    def sort_collumn
+      params[:sort] || "name"
+    end
+
+    def sort_direction
+      params[:direction] || "ASC"
+    end
+
   end
