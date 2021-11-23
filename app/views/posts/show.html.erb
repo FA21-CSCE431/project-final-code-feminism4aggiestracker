@@ -31,7 +31,7 @@
       <% if (@likes != nil) %>
         <% @likes.each do |like| %>
           <% @member = Member.find(like.member_id) %>
-          <%= @member.name %>
+          <p><%= @member.name %></p>
           <br>
         <% end %>
       <% end %>
@@ -39,16 +39,16 @@
       <% @member_id = Member.where(uid: current_admin.uid).first().id %>
 
       <% if @member_id == @post.member_id %>
-        <%= link_to 'Edit', edit_post_path(@post) %> |
+        <%= link_to 'Edit', edit_post_path(@post), :class => 'underline' %> |
       <% end %>
-      <%= link_to 'Back', posts_path %> |
+      <%= link_to 'Back', posts_path, :class => 'underline' %> |
 
 
       <% if(Like.exists?(:member_id => @member_id, :post_id => @post.id)) %>
         <% @like = Like.find_by(member_id: @member_id, post_id: @post.id) %>
-        <%= link_to("Un-like", delete_like_path(@like, :post_id => @post.id, :member_id => @member_id), data: { confirm: 'Are you sure?' }) %>
+        <%= link_to("Un-like", delete_like_path(@like, :post_id => @post.id, :member_id => @member_id), data: { confirm: 'Are you sure?' }, :class => 'underline') %>
       <% else %>
-        <%= link_to("Like", likes_path(:like => @like, :post_id => @post.id, :member_id => @member_id), method: :create) %>
+        <%= link_to("Like", likes_path(:like => @like, :post_id => @post.id, :member_id => @member_id), method: :create, :class => 'underline') %>
       <% end %>
     </div>
 
