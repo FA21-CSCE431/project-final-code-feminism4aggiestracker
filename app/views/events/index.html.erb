@@ -34,8 +34,8 @@
             <% end %></td>
             <td><%= link_to 'Show', event %></td>
             <% if @is_admin %>
-            <td><%= link_to 'Edit', edit_event_path(event) %></td>
-            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_event_path(event), :class => 'underline' %></td>
+            <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %></td>
             <% end %>
             <br>
           </tr>
@@ -45,7 +45,7 @@
 
     <br>
     <% if @is_admin %>
-    <%= link_to 'New Event', new_event_path %>
+    <%= link_to 'New Event', new_event_path, :class => 'underline' %>
     <% end %>
 
   </div>
