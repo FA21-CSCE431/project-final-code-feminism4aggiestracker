@@ -32,7 +32,6 @@
         <% @likes.each do |like| %>
           <% @member = Member.find(like.member_id) %>
           <p><%= @member.name %></p>
-          <br>
         <% end %>
       <% end %>
 

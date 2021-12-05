@@ -32,7 +32,7 @@
             <% if (MemberPoint.exists?(:member_id => @member_id, :event_id => event.id) == false && event.status == true) %>
               <td><%= link_to("Join this event", member_points_path(:member_point => @memberpoint, :event_id => event.id, :member_id => @member_id, :activity_id => event.activity_id, :points => @activity.num_points, :date => event.date), method: :create) %>
             <% end %></td>
-            <td><%= link_to 'Show', event %></td>
+            <td><%= link_to 'Show', event, :class => 'underline' %></td>
             <% if @is_admin %>
             <td><%= link_to 'Edit', edit_event_path(event), :class => 'underline' %></td>
             <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'underline' %></td>
