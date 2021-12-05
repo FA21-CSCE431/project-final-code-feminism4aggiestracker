@@ -4,7 +4,7 @@ This project is designed to solve the following issues for the Feminism4Aggies c
 1. Tracking Membership points which can be earned through attending meetings or participating through events
 2. Be able to show members announcements on the website
 3. allow members to make posts and like other posts
-4. show very general information about the club
+4. show very general information about the club 
   a. Since this is an internal tool and will be mainly static after development we do not want to
      include very topical/time oriented information on the website
 
