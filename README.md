@@ -18,19 +18,33 @@ This code has been run and tested on:
 
 For this project we used the following tools:
 Ruby - 3.0.2p107
+
 Rails - 6.1.4.1
+
 Ruby Gems - See Gemfile
+
 Google Oauth V2.0 for authentication - https://developers.google.com/identity/protocols/oauth2
+
 Yarn - 1.22.11
+
 PostgreSQL - psql (PostegreSQL) 13.3 (Debian 13.3-1)
+
 CSS and HTML for the frontend (we did not use a frontend framework such as React or Angular)
+
 Docker for environment virtualization - https://www.docker.com/products/docker-desktop
+
 Heroku for hosting and deployment - https://devcenter.heroku.com/articles/heroku-cli
+
 Jira for Project Management - https://www.atlassian.com/software/jira
+
 Github for version Control - You are here (https://github.com/FA21-CSCE431/project-final-code-feminism4aggiestracker)
-                                          (https://github.com/oriyonay/CSCE431-Project)
+
+Alternatve Github - (https://github.com/oriyonay/CSCE431-Project)
+                                          
 Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
 MS Teams as primary communication channel - https://www.microsoft.com/en-us/microsoft-teams/download-app
+
 
 ## Installation
 Download this code repository by using git:
