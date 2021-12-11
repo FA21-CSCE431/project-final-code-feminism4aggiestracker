@@ -104,4 +104,10 @@ https://www.youtube.com/watch?v=yqxORosQQbo
 Please use the need Help Page under the Need Help? tab located on the navigation bar
 
 ## Credits
+Product Owner - Ori Yonay
+Scrum Master - Nate Krall
+Developers - Andrew Han, Haoning Wang, Cassidy Frier, Tyler Lachney, Nate Krall, Ori Yonay
+
+## Special Thanks
 We would like to thank Professor Pauline Wade, Diego Martinez, and Yihao Xie
+We would also like to mention the tremendous job and effort put in by Andrew Han as a developer. He went above and beyond in both development and helping others.
