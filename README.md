@@ -72,7 +72,17 @@ Run the app rails server --binding:0.0.0.0
 You can view the website locally from http://localhost:3000/
 
 ## Deployment
-Please fill this in andrew
+Sign into youre heroku account
+
+Click the New button in the top right of your app list and select Create new pipeline and name your new pipeline
+
+Connect your pipeline to your github environment
+
+Click Create new pipeline
+
+Next you will click "Enable Review Apps"
+
+Click "New app" in review apps and choose the branch you wish to deploy
 
 ## CI/CD
 For continuous development, we set up Heroku to automatically deploy our apps when changes were made to either the test or main branch shown below:
