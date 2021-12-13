@@ -77,7 +77,7 @@ Google OAuth2 support requires two keys to function as intended: Client ID and C
 
 Create a new file called application.yml in the /config folder and add the following lines:
 
-config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'] = 'YourClientID', ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'YourClientSecret'
+config.omniauth :google_oauth2, `ENV['GOOGLE_OAUTH_CLIENT_ID'] = 'YourClientID', ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'YourClientSecret'`
 
 ## Deployment
 Sign into youre heroku account
