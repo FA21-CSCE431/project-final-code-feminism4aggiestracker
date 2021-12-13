@@ -71,6 +71,14 @@ Run the app rails server --binding:0.0.0.0
 
 You can view the website locally from http://localhost:3000/
 
+## Environmental Variables/Files
+
+Google OAuth2 support requires two keys to function as intended: Client ID and Client Secret
+
+Create a new file called application.yml in the /config folder and add the following lines:
+
+config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'] = 'YourClientID', ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'YourClientSecret'
+
 ## Deployment
 Sign into youre heroku account
 
